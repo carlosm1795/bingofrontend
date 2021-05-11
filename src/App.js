@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./index.css";
+import Carton from "./Components/Carton/Carton.js";
+import Admin from "./Components/Admin/Admin.js";
+import Login from "./Components/Login/Login.js";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Movies from "./Components/Movies/Movies";
+import MoviesConsumer from "./Components/Movies/MoviesConsumer";
+import { getCarton } from "./actions/bingo.js";
+import { selectUserName, selectUserPhoto } from "./features/user/userSlice";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const userName = useSelector(selectUserName);
+  const userPhoto = useSelector(selectUserPhoto);
+
+  useEffect(() => {
+    dispatch(getCarton());
+  }, [dispatch]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <>
+        <Movies />
+        <Router>
+          <Switch>
+            {/* <Route exact path="/" component={Carton} /> */}
+            {/* <Route path="/" component={MoviesConsumer} /> */}
+            <Route path="/login/" component={Login} />
+            <Route path="/admin/" component={Admin} />
+          </Switch>
+        </Router>
+      </>
     </div>
   );
 }
