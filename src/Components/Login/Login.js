@@ -46,6 +46,7 @@ const Login = () => {
       ...login,
       [name]: value,
     });
+    console.log(login);
   };
   return (
     <form className={classes.container} noValidate autoComplete="off">
