@@ -3,6 +3,7 @@ import "./index.css";
 import Carton from "./Components/Carton/Carton.js";
 import Admin from "./Components/Admin/Admin.js";
 import Login from "./Components/Login/Login.js";
+import TypeGames from "./Components/TypeGames/TypeGames.js";
 import {
   BrowserRouter as Router,
   Route,
@@ -36,6 +37,7 @@ function App() {
             {/* <Route path="/" component={MoviesConsumer} /> */}
             <Route path="/login/" component={Login} />
             <Route path="/admin/" component={Admin} />
+            <Route path="/typeGames/" component={TypeGames} />
           </Switch>
         </Router>
       </>
