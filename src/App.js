@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./index.css";
+import ReactNotifications from "react-notifications-component";
 import Carton from "./Components/Carton/Carton.js";
 import Admin from "./Components/Admin/Admin.js";
 import Login from "./Components/Login/Login.js";
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <>
+        <ReactNotifications />
         <Movies />
         <Router>
           <Switch>

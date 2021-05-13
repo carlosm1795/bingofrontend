@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 import {
   Paper,
   Grid,
@@ -75,6 +78,20 @@ const TypeGames = () => {
     setFormValues({ id, nombre });
   };
 
+  const showNotification = (type, message, title) => {
+    store.addNotification({
+      title: title,
+      message: message,
+      type: type, // 'default', 'success', 'info', 'warning'
+      container: "top-right", // where to position the notifications
+      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      dismiss: {
+        duration: 3000,
+      },
+    });
+  };
+
   const updateIntoDb = () => {
     const data = { id: formValues.id, nombre: formValues.nombre };
     var config = {
@@ -89,9 +106,11 @@ const TypeGames = () => {
     axios(config)
       .then(function (response) {
         getTypeGames();
+        showNotification("success", "Entry Updated", "Entry Updated");
         console.log(JSON.stringify(response.data));
       })
       .catch(function (error) {
+        showNotification("success", error, "Error");
         console.log(error);
       });
   };
@@ -110,9 +129,11 @@ const TypeGames = () => {
     axios(config)
       .then(function (response) {
         getTypeGames();
+        showNotification("success", "Entry Deleted", "Entry Deleted");
         console.log(JSON.stringify(response.data));
       })
       .catch(function (error) {
+        showNotification("success", error, "Error");
         console.log(error);
       });
   };
@@ -130,9 +151,11 @@ const TypeGames = () => {
     axios(config)
       .then(function (response) {
         getTypeGames();
+        showNotification("success", "Entry Created", "Entry Created");
         console.log(JSON.stringify(response.data));
       })
       .catch(function (error) {
+        showNotification("error", error, "Error");
         console.log(error);
       });
   };
