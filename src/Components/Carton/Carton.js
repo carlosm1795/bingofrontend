@@ -17,8 +17,9 @@ import * as api from "../../api";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
 const Carton = () => {
-  const reduxCarton = useSelector((state) => state.bingo);
+  //const carton = useSelector((state) => state.bingo);
   const classes = useStyles();
+  const [carton, setCarton] = useState({ B: [] });
   const [response, setReponse] = useState("");
   const [hideAlert, sethideAlert] = useState(true);
   const [colors, setColors] = useState({
@@ -50,31 +51,31 @@ const Carton = () => {
   });
   const resetCarton = () => {
     setColors({
-      B0: "",
-      B1: "",
-      B2: "",
-      B3: "",
-      B4: "",
-      I0: "",
-      I1: "",
-      I2: "",
-      I3: "",
-      I4: "",
-      N0: "",
-      N1: "",
-      N2: "",
-      N3: "",
-      N4: "",
-      G0: "",
-      G1: "",
-      G2: "",
-      G3: "",
-      G4: "",
-      O0: "",
-      O1: "",
-      O2: "",
-      O3: "",
-      O4: "",
+      B0: "default",
+      B1: "default",
+      B2: "default",
+      B3: "default",
+      B4: "default",
+      I0: "default",
+      I1: "default",
+      I2: "default",
+      I3: "default",
+      I4: "default",
+      N0: "default",
+      N1: "default",
+      N2: "default",
+      N3: "default",
+      N4: "default",
+      G0: "default",
+      G1: "default",
+      G2: "default",
+      G3: "default",
+      G4: "default",
+      O0: "default",
+      O1: "default",
+      O2: "default",
+      O3: "default",
+      O4: "default",
     });
   };
   const setGane = () => {
@@ -98,6 +99,12 @@ const Carton = () => {
     socket.on("FromAPI", (data) => {
       setReponse(data);
     });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/bingo/")
+      .then((response) => setCarton(response.data));
   }, []);
 
   return (
@@ -140,57 +147,55 @@ const Carton = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {reduxCarton[0].B.map(function (row, index) {
-              return (
-                <TableRow key={index}>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      onClick={() => changeColor(`B${index}`)}
-                      color={colors[`B${index}`]}
-                    >
-                      {row}
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      onClick={() => changeColor(`I${index}`)}
-                      color={colors[`I${index}`]}
-                    >
-                      {reduxCarton[0].I[index]}
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      onClick={() => changeColor(`N${index}`)}
-                      color={colors[`N${index}`]}
-                    >
-                      {reduxCarton[0].N[index]}
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      onClick={() => changeColor(`G${index}`)}
-                      color={colors[`G${index}`]}
-                    >
-                      {reduxCarton[0].G[index]}
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      onClick={() => changeColor(`O${index}`)}
-                      color={colors[`O${index}`]}
-                    >
-                      {reduxCarton[0].O[index]}
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {carton.B.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    onClick={() => changeColor(`B${index}`)}
+                    color={colors[`B${index}`]}
+                  >
+                    {row}
+                  </Button>
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    onClick={() => changeColor(`I${index}`)}
+                    color={colors[`I${index}`]}
+                  >
+                    {carton.I[index]}
+                  </Button>
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    onClick={() => changeColor(`N${index}`)}
+                    color={colors[`N${index}`]}
+                  >
+                    {carton.N[index]}
+                  </Button>
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    onClick={() => changeColor(`G${index}`)}
+                    color={colors[`G${index}`]}
+                  >
+                    {carton.G[index]}
+                  </Button>
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    onClick={() => changeColor(`O${index}`)}
+                    color={colors[`O${index}`]}
+                  >
+                    {carton.O[index]}
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

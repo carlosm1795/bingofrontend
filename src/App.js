@@ -18,6 +18,7 @@ import { getCarton } from "./actions/bingo.js";
 import { selectUserName, selectUserPhoto } from "./features/user/userSlice";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Container } from "@material-ui/core";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,19 +31,19 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
-      <>
+      <Container>
         <ReactNotifications />
         <Movies />
         <Router>
           <Switch>
-            {/* <Route exact path="/" component={Carton} /> */}
+            <Route exact path="/" component={Carton} />
             {/* <Route path="/" component={MoviesConsumer} /> */}
             <Route path="/login/" component={Login} />
             <Route path="/admin/" component={Admin} />
             <Route path="/typeGames/" component={TypeGames} />
           </Switch>
         </Router>
-      </>
+      </Container>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import socketIOClient from "socket.io-client";
 import "./admin.css";
 import axios from "axios";
+import ValidateCarton from "./ValidateCarton";
 
 const Admin = () => {
   const [numeros, setNumeros] = useState([]);
@@ -131,6 +132,13 @@ const Admin = () => {
               >
                 Crear Nuevo Juego
               </Button>
+            </Card>
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper>
+            <Card>
+              <ValidateCarton />
             </Card>
           </Paper>
         </Grid>
