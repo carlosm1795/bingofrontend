@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
+import {
+  Button,
+  Paper,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  TableBody,
+  Table,
+  Container,
+} from "@material-ui/core";
 import axios from "axios";
 import { AppBar } from "@material-ui/core";
 import socketIOClient from "socket.io-client";
@@ -102,29 +105,28 @@ const Carton = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/bingo/")
-      .then((response) => setCarton(response.data));
+    axios.get("bingo/").then((response) => setCarton(response.data));
   }, []);
 
   return (
     <div>
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h5" align="center">
-          {response ? <h4>Número: {response}</h4> : null}
-        </Typography>
-      </AppBar>
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h4" align="center">
-          <Button variant="contained" color="primary" onClick={resetCarton}>
-            Limpiar Cartón
-          </Button>
-          <Button onClick={setGane} variant="contained" color="primary">
-            Gané
-          </Button>
-        </Typography>
-      </AppBar>
-
+      <Container>
+        <AppBar className={classes.appBar} position="static" color="inherit">
+          <Typography className={classes.heading} variant="h5" align="center">
+            {response ? <h4>Número: {response}</h4> : null}
+          </Typography>
+        </AppBar>
+        <AppBar className={classes.appBar} position="static" color="inherit">
+          <Typography className={classes.heading} variant="h4" align="center">
+            <Button variant="contained" color="primary" onClick={resetCarton}>
+              Limpiar Cartón
+            </Button>
+            <Button onClick={setGane} variant="contained" color="primary">
+              Gané
+            </Button>
+          </Typography>
+        </AppBar>
+      </Container>
       <TableContainer component={Paper} className={classes.carton}>
         <Table aria-label="simple table">
           <TableHead>
