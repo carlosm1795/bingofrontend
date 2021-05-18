@@ -97,15 +97,16 @@ const Carton = () => {
     });
   };
 
-  useEffect(() => {
-    const socket = socketIOClient("/");
-    socket.on("FromAPI", (data) => {
-      setReponse(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   const socket = socketIOClient("/");
+  //   socket.on("FromAPI", (data) => {
+  //     setReponse(data);
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    axios.get("bingo/").then((response) => setCarton(response.data));
+  useEffect(async () => {
+    const cartonInformation = await api.getCarton();
+    setCarton(cartonInformation.data);
   }, []);
 
   return (
