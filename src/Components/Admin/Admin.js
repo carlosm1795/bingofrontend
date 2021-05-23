@@ -12,6 +12,7 @@ import socketIOClient from "socket.io-client";
 import "./admin.css";
 import axios from "axios";
 import ValidateCarton from "./ValidateCarton";
+import SearchCartonNumbers from "./SearchCartonNumbers";
 
 const Admin = () => {
   const [numeros, setNumeros] = useState([]);
@@ -108,7 +109,7 @@ const Admin = () => {
             </Card>
           </Paper>
         </Grid>
-        <Grid item xs={6}>
+        {/* <Grid item xs={6}>
           <Paper>
             <Card>
               <CardContent>
@@ -134,11 +135,18 @@ const Admin = () => {
               </Button>
             </Card>
           </Paper>
-        </Grid>
+        </Grid> */}
         <Grid item xs={6}>
           <Paper>
             <Card>
               <ValidateCarton />
+            </Card>
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper>
+            <Card>
+              <SearchCartonNumbers />
             </Card>
           </Paper>
         </Grid>
