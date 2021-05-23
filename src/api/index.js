@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const url = "http://localhost:5000";
-// const mainUrl = "https://bingobacked.herokuapp.com";
-const mainUrl = url;
+// const url = "http://localhost:5000";
+//const mainUrl = url;
+const mainUrl = "https://bingobacked.herokuapp.com";
+
 export const getCarton = (jugador) =>
   axios({
     method: "post",
@@ -12,7 +13,7 @@ export const getCarton = (jugador) =>
     },
     data: jugador,
   });
-export const gane = (usuario) => axios.get(`${url}/winner/${usuario}`);
+export const gane = (usuario) => axios.get(`${mainUrl}/winner/${usuario}`);
 
 //Validations Calls
 export const getTypeGamesCall = () => axios.get(`${mainUrl}/typeGame`);

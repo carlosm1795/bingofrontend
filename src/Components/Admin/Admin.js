@@ -129,7 +129,7 @@ const Admin = () => {
         <Grid item xs={6}>
           <Paper>
             <Card>
-              <SearchCartonNumbers />
+              <ValidateCarton />
             </Card>
           </Paper>
         </Grid>

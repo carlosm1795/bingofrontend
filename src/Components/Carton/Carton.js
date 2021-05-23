@@ -97,12 +97,12 @@ const Carton = () => {
     });
   };
 
-  // useEffect(() => {
-  //   const socket = socketIOClient("/");
-  //   socket.on("FromAPI", (data) => {
-  //     setReponse(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    const socket = socketIOClient("/");
+    socket.on("FromAPI", (data) => {
+      setReponse(data);
+    });
+  }, []);
 
   useEffect(async () => {
     let jugador = {
