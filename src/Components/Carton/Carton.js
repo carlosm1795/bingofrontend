@@ -22,7 +22,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 const Carton = () => {
   //const carton = useSelector((state) => state.bingo);
   const classes = useStyles();
-  const [carton, setCarton] = useState({ B: [] });
+  const [carton, setCarton] = useState({ rowB: [] });
   const [response, setReponse] = useState("");
   const [hideAlert, sethideAlert] = useState(true);
   const [colors, setColors] = useState({
@@ -105,8 +105,12 @@ const Carton = () => {
   // }, []);
 
   useEffect(async () => {
-    const cartonInformation = await api.getCarton();
-    setCarton(cartonInformation.data);
+    let jugador = {
+      jugador: 1020,
+    };
+    const cartonInformation = await api.getCarton(jugador);
+    console.log(cartonInformation.data);
+    setCarton(cartonInformation.data.result);
   }, []);
 
   return (
@@ -150,7 +154,7 @@ const Carton = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {carton.B.map((row, index) => (
+            {carton.rowB.map((row, index) => (
               <TableRow key={index}>
                 <TableCell align="center">
                   <Button
@@ -167,7 +171,7 @@ const Carton = () => {
                     onClick={() => changeColor(`I${index}`)}
                     color={colors[`I${index}`]}
                   >
-                    {carton.I[index]}
+                    {carton.rowI[index]}
                   </Button>
                 </TableCell>
                 <TableCell align="center">
@@ -176,7 +180,7 @@ const Carton = () => {
                     onClick={() => changeColor(`N${index}`)}
                     color={colors[`N${index}`]}
                   >
-                    {carton.N[index]}
+                    {carton.rowN[index]}
                   </Button>
                 </TableCell>
                 <TableCell align="center">
@@ -185,7 +189,7 @@ const Carton = () => {
                     onClick={() => changeColor(`G${index}`)}
                     color={colors[`G${index}`]}
                   >
-                    {carton.G[index]}
+                    {carton.rowG[index]}
                   </Button>
                 </TableCell>
                 <TableCell align="center">
@@ -194,7 +198,7 @@ const Carton = () => {
                     onClick={() => changeColor(`O${index}`)}
                     color={colors[`O${index}`]}
                   >
-                    {carton.O[index]}
+                    {carton.rowO[index]}
                   </Button>
                 </TableCell>
               </TableRow>
