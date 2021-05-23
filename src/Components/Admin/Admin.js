@@ -119,10 +119,17 @@ const Admin = () => {
             </Card>
           </Paper>
         </Grid>
-        <Grid item xs={6}>
+        {/* <Grid item xs={6}>
           <Paper>
             <Card>
               <ValidateCarton />
+            </Card>
+          </Paper>
+        </Grid> */}
+        <Grid item xs={6}>
+          <Paper>
+            <Card>
+              <SearchCartonNumbers />
             </Card>
           </Paper>
         </Grid>
