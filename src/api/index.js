@@ -25,3 +25,4 @@ export const validateCartonCall = (data) =>
     },
     data: data,
   });
+export const sendNewNumber = () => axios.get(`${mainUrl}/sendNewNumber`);

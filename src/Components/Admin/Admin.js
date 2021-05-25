@@ -15,7 +15,7 @@ import "./admin.css";
 import axios from "axios";
 import ValidateCarton from "./ValidateCarton";
 import SearchCartonNumbers from "./SearchCartonNumbers";
-
+import * as api from "../../api/index.js";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -35,11 +35,15 @@ const Admin = () => {
   const classes = useStyles();
   const [numeros, setNumeros] = useState([]);
   const [winners, setWinners] = useState([]);
-  const sendNewNumber = () => {
-    axios
-      .get(`/sendNewNumber`)
-      .then((res) => setNumeros([...numeros, res.data.response]));
+  const sendNewNumber = async () => {
+    const response = await api.sendNewNumber();
+    setNumeros([...numeros, response.data.response]);
   };
+  // const sendNewNumber = () => {
+  //   axios
+  //     .get(`/sendNewNumber`)
+  //     .then((res) => setNumeros([...numeros, res.data.response]));
+  // };
   const [value, setValue] = React.useState("");
   const handleRadioChange = (event) => {
     setValue(event.target.value);
