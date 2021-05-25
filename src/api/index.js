@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const mainUrl = "http://localhost:5000";
-//const mainUrl = "https://bingobacked.herokuapp.com";
+// const mainUrl = "http://localhost:5000";
+const mainUrl = "https://bingobacked.herokuapp.com";
 
 export const getCarton = (jugador) =>
   axios({
